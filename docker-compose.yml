@@ -1,0 +1,44 @@
+# ADIP Local — Milestone 0 infrastructure.
+# Starts PostgreSQL (source of truth) and the FastAPI backend.
+# The React frontend is run separately (npm run dev) during development.
+# No secrets are stored here; values come from the root `.env` file.
+
+services:
+  db:
+    image: postgres:16
+    container_name: adip_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-adip}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_locally}
+      POSTGRES_DB: ${POSTGRES_DB:-adip}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-adip} -d ${POSTGRES_DB:-adip}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+    container_name: adip_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-adip}:${POSTGRES_PASSWORD:-change_me_locally}@db:5432/${POSTGRES_DB:-adip}
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+      BACKEND_HOST: 0.0.0.0
+      BACKEND_PORT: 8000
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+
+volumes:
+  postgres_data:
