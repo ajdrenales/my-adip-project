@@ -1,0 +1,17 @@
+# AGENT INSTRUCTION SET: DeepSeek 4.1 Flash + ECC + Superpowers + UI UX Pro Max
+
+## 1. CORE OPERATIONAL WORKFLOW (Superpowers Protocol)
+- **Phase 1: Brainstorm & Spec First.** Do NOT write code immediately for complex features. Ask clarifying questions and propose a technical spec first.
+- **Phase 2: Planning.** Break implementations down into small, distinct, 2-to-5 minute execution steps with clear pass/fail conditions.
+- **Phase 3: Test-Driven Development (TDD).** Write failing test cases prior to implementing production logic.
+- **Phase 4: Systematic Debugging.** Formulate hypotheses, inspect logs/traces, and identify root causes before attempting code changes.
+
+## 2. DESIGN & STYLING RULES (UI UX Pro Max Protocol)
+- Follow design guidelines and color palette rules located in `.agents/` and `.cline/skills/`.
+- Enforce strict visual hierarchy, responsive Tailwind/CSS rules, and accessibility standards.
+
+## 3. CODE QUALITY & PATTERNS (Everything Claude Code Protocol)
+- Maintain code modularity, strict type definitions, and follow language-specific security guardrails located in `.cline/skills/`.
+
+## 4. SKILL DIRECTORY REFERENCE
+All sub-skills and detailed domain rules are stored in `.cline/skills/`. Refer to specific markdown files in this directory when invoked.
