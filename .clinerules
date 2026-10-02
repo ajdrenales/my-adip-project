@@ -15,3 +15,23 @@
 
 ## 4. SKILL DIRECTORY REFERENCE
 All sub-skills and detailed domain rules are stored in `.cline/skills/`. Refer to specific markdown files in this directory when invoked.
+
+## Skill-use policy
+
+- Before starting a task, inspect available project skills and identify only
+  the skills relevant to the task.
+- State which skills will be loaded and why before writing files or running
+  commands.
+- Do not claim compliance with a skill unless its SKILL.md or required
+  referenced instruction has been loaded and followed.
+- Do not load UI/UX, accessibility, cloud AI, deployment, or other unrelated
+  skills for backend-only tasks.
+- Always load `verification-before-completion` before declaring any milestone,
+  feature, build, test suite, migration, backup, restore, or release complete.
+- Load `systematic-debugging` after a failed test, build, runtime command, or
+  unexpected behavior and before proposing a code change.
+- For authentication, roles, sessions, secrets, cloud AI, file uploads, or
+  permissions, load the relevant security skill before implementation or review.
+- For schema/database changes, load the database migration/integrity skill.
+- For user-facing forms, POS, scanner workflows, reports, dashboards, and
+  Android browser screens, load UI/UX and accessibility skills.
